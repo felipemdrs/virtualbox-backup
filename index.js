@@ -2,9 +2,15 @@ const virtualbox = require('virtualbox');
 
 function savestate (vm) {
   return new Promise ((resolve, reject) => {
-    virtualbox.savestate(vm, (error) => {
-      if (error) {
-        reject(error);
+    virtualbox.isRunning(vm, (error, isRunning) => {
+      if (isRunning) {
+        virtualbox.savestate(vm, (error) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        });
       } else {
         resolve();
       }
@@ -24,9 +30,9 @@ function vmExport (vm, output) {
   });
 }
 
-function resume (vm) {
+function start (vm) {
   return new Promise ((resolve, reject) => {
-    virtualbox.resume(vm, (error) => {
+    virtualbox.start(vm, false, (error) => {
       if (error) {
         reject(error);
       } else {
@@ -41,7 +47,7 @@ module.exports = function (vm, output) {
     try {
       await savestate(vm);
       await vmExport(vm, output);
-      await resume(vm);
+      await start(vm);
       
       resolve();
     } catch (error) {
