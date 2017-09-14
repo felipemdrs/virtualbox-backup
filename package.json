@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/felipemdrs/virtualbox-backup#readme",
   "dependencies": {
-    "virtualbox": "^0.1.3"
+    "virtualbox": "git+https://github.com/felipemdrs/node-virtualbox.git"
   }
 }

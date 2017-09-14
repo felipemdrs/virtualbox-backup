@@ -1,7 +1,7 @@
 const virtualbox = require('virtualbox');
 
 function savestate (vm) {
-  return Promise ((resolve, reject) => {
+  return new Promise ((resolve, reject) => {
     virtualbox.savestate(vm, (error) => {
       if (error) {
         reject(error);
@@ -13,7 +13,7 @@ function savestate (vm) {
 }
 
 function vmExport (vm, output) {
-  return Promise ((resolve, reject) => {
+  return new Promise ((resolve, reject) => {
     virtualbox.export(vm, output, (error) => {
       if (error) {
         reject(error);
@@ -25,7 +25,7 @@ function vmExport (vm, output) {
 }
 
 function resume (vm) {
-  return Promise ((resolve, reject) => {
+  return new Promise ((resolve, reject) => {
     virtualbox.resume(vm, (error) => {
       if (error) {
         reject(error);
@@ -36,7 +36,7 @@ function resume (vm) {
   });
 }
 
-module.export = function (vm, output) {
+module.exports = function (vm, output) {
   return new Promise (async (resolve, reject) => {
     try {
       await savestate(vm);
