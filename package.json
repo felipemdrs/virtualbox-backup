@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/felipemdrs/virtualbox-backup/issues"
   },
-  "homepage": "https://github.com/felipemdrs/virtualbox-backup#readme"
+  "homepage": "https://github.com/felipemdrs/virtualbox-backup#readme",
+  "dependencies": {
+    "virtualbox": "^0.1.3"
+  }
 }
